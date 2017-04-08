@@ -73,6 +73,8 @@ patents = (function() {
 
     /*
 
+        http://www.patentsview.org/api/query-language.html
+
         http://www.patentsview.org/api/patents/query?
 
             q={"_and":[{"inventor_last_name":"motyl"}]}
