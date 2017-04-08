@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Patent API Experiments</title>
+    <meta name="author" content="Jim Motyl">
+    <meta name="description" content="playing around with the USPTO API">
+    <meta name="keywords" content="USPTO,api,xml,javascript,jquery,ajax">
+    <!-- Styling (if necessary)
+    -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Required CDN's for this application
+    -->
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+
+
+    <!-- Obtained the following from - https://github.com/douglascrockford/JSON-js 
+            Purpose: To parse JSON data into an object array.
+    -->
+    <script src="assets/js/3rdparty/json2.js" type="text/javascript"></script>
+
+    <script src="assets/js/patentsJSON.js" type="text/javascript"></script>
+    <script src="assets/js/ns-misc-util.js" type="text/javascript"></script>
+    <script src="assets/js/ns-patents.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div>
+        <button id="test1">TEST 1</button>
+    </div>
+    <br><br><br>
+    <div>
+        <button id="test2">TEST 2</button>
+    </div>
+    <br><br><br>
+    <div>
+        <button id="test3">render json</button>
+    </div>
+
+    <br><br><br>
+
+    <div id="target">
+    </div>
+
+</body>
+
+    <script src="assets/js/test.js" type="text/javascript"></script>
+
+    <script id="patent-template" type="text/x-handlebars-template">
+        <div id="workhist-responsive" class="workhist-nocopy">
+            <h6 class="workhist-subevent-title">Last update: {{patents.last_search}}</h6>
+            <div id="patent-list">
+            {{#each patents.list as |patent|}}
+                <div id="patent-{{ patent.patent_number }}" class="workhist-event">
+                    <h4 id="patent-heading-{{patent.patent_number}}" class="workhist-event-title collapsed" data-toggle="collapse" data-target="#patent-content-{{patent.patent_number}}"><span id="patent-icon-{{patent.patent_number}}" class="fa workhist-event-collapse-icon"> </span><span id="patent-title-{{patent.patent_number}}" class="workhist-event-loc">{{patent.patent_title}}</span><span id="patent-numb-{{patent.patent_number}}" class="workhist-event-dur">{{patent.patent_number}}</span></h4>
+                    <div id="patent-content-{{patent.patent_number}}" class="workhist-event-content collapse">
+                        <h5 id="patent-dates-{{patent.patent_number}}" class="workhist-subevent-title">
+                            <span id="patent-appdate-{{patent.patent_number}}" class="workhist-event-loc"><i>Applied : </i>{{patent.app_date}}</span>
+                            </br>
+                            <span id="patent-appdate-{{patent.patent_number}}" class="workhist-event-loc"><i>Granted : </i>{{patent.patent_date}}</span>
+                        </h5>
+                        <p id="patent-abstract-{{patent.patent_number}}">
+                            {{patent.patent_abstract}}
+                        </p>
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </script>
+</html>
+
+
