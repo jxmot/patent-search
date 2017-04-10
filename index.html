@@ -26,6 +26,40 @@
     <script src="assets/js/ns-misc-util.js" type="text/javascript"></script>
     <script src="assets/js/ns-patents.js" type="text/javascript"></script>
 
+    <style>
+        .patent-item {
+            width:95%;
+            margin-left:5%;
+        }
+        
+        .patent-heading {
+            position:relative;
+            cursor:pointer;
+            font-weight:bold;
+        }
+        
+        .patent-heading:hover {
+            font-style:italic;
+        }
+        
+        .patent-heading-collapse-icon::before {
+            content:"\21F1";
+        }
+        
+        .collapsed .patent-heading-collapse-icon::before {
+            content:"\21F2";
+        }
+        
+        .patent-item-content {
+            width:95%;
+            font-family:monospace, monospace;
+        }
+        
+        .patent-item-title {
+            position:relative;
+            font-weight:bold;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -50,17 +84,25 @@
     <script src="assets/js/test.js" type="text/javascript"></script>
 
     <script id="patent-template" type="text/x-handlebars-template">
-        <div id="workhist-responsive" class="workhist-nocopy">
-            <h6 class="workhist-subevent-title">Last update: {{patents.last_search}}</h6>
+        <div id="patent-data" class="workhist-nocopy">
+            <p id="patent-parag">
+                I have been named as a co-inventor in the following patents : 
+            </p>
             <div id="patent-list">
             {{#each patents.list as |patent|}}
-                <div id="patent-{{ patent.patent_number }}" class="workhist-event">
-                    <h4 id="patent-heading-{{patent.patent_number}}" class="workhist-event-title collapsed" data-toggle="collapse" data-target="#patent-content-{{patent.patent_number}}"><span id="patent-icon-{{patent.patent_number}}" class="fa workhist-event-collapse-icon"> </span><span id="patent-title-{{patent.patent_number}}" class="workhist-event-loc">{{patent.patent_title}}</span><span id="patent-numb-{{patent.patent_number}}" class="workhist-event-dur">{{patent.patent_number}}</span></h4>
-                    <div id="patent-content-{{patent.patent_number}}" class="workhist-event-content collapse">
-                        <h5 id="patent-dates-{{patent.patent_number}}" class="workhist-subevent-title">
-                            <span id="patent-appdate-{{patent.patent_number}}" class="workhist-event-loc"><i>Applied : </i>{{patent.app_date}}</span>
-                            </br>
-                            <span id="patent-appdate-{{patent.patent_number}}" class="workhist-event-loc"><i>Granted : </i>{{patent.patent_date}}</span>
+                <div id="patent-{{patent.patent_number}}" class="patent-item">
+                    <h5 id="patent-heading-{{patent.patent_number}}" class="patent-heading collapsed" data-toggle="collapse" data-target="#patent-content-{{patent.patent_number}}">
+                        <span id="patent-icon-{{patent.patent_number}}" class="fa patent-heading-collapse-icon"> </span>
+                        <span id="patent-title-{{patent.patent_number}}">{{patent.patent_title}}</span>
+                    </h5>
+                    <!-- a monospace font is used from this point on... -->
+                    <div id="patent-content-{{patent.patent_number}}" class="patent-item-content collapse">
+                        <h5 id="patent-dates-{{patent.patent_number}}" class="patent-item-title">
+                            <span id="patent-appdate-{{patent.patent_number}}">Applied &nbsp;: {{patent.app_date}}</span>
+                            <br>
+                            <span id="patent-grantdate-{{patent.patent_number}}">Granted &nbsp;: {{patent.patent_date}}</span>
+                            <br>
+                            <span id="patent-numb-{{patent.patent_number}}">Patent # : {{patent.patent_number}}</span>
                         </h5>
                         <p id="patent-abstract-{{patent.patent_number}}">
                             {{patent.patent_abstract}}
