@@ -1,0 +1,16 @@
+{
+    "organizations": [
+        {"assignee_organization": ""},
+        {"assignee_organization": ""}
+    ],
+    "inventor_last_name": "",
+    "inventor_first_name": "",
+    "fields": [
+        "app_date","patent_title","patent_number","patent_date","patent_abstract"
+    ],
+    "sort": [
+        {"app_date":"asc"},
+        {"patent_number":"asc"}
+    ]
+}
+

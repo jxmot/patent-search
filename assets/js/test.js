@@ -30,7 +30,7 @@ function renderPatents(patData) {
 }
 
 $(document).on('patentsDataRead', function(event, arg) {
-        console.log('Event(patentsDataRead) - done, rawPatents read = ' + rawPatents.length);
+        console.log('Event(patentsDataRead) - done, rawPatents read = ' + rawPatents.list.length);
     }
 );
 
