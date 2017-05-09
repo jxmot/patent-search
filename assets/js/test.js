@@ -11,6 +11,7 @@ $('#test2').on('click', runTest2);
 
 function runTest2() {
     patents.search('patents', 'WMS Gaming Inc.', 'motyl', '');
+    patents.search('patents', 'Bally Gaming, Inc.', 'motyl', '');
 }
 
 $('#test3').on('click', runTest3);
