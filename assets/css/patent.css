@@ -3,8 +3,15 @@
     2017 (c) Jim Motyl 
 
 
-	Patent content
+	Patent content styling
 */
+.patent-nocopy {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+
 .patent-item {
     width:95%;
     margin-left:5%;

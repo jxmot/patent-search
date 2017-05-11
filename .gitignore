@@ -3,6 +3,7 @@
 _*.*
 # And the following folder(s) -
 node_modules
+_*
 /_*
 /nbproject
 # misc stuff i want to ignore -
