@@ -3,16 +3,16 @@ var patentTarget = '';
 $('#patentsget').on('click', patentsGet);
 
 function patentsGet() {
-	patentTarget = '#target1';
-	
+    patentTarget = '#target1';
+    
     patents.get('http://www.patentsview.org/api/patents/query?q={"_and":[{"inventor_last_name":"motyl"},{"_or":[{"assignee_organization":"WMS Gaming Inc."},{"assignee_organization":"Bally Gaming, Inc."}]}]}&f=["app_date","patent_title","patent_number","patent_date","patent_abstract"]&s=[{"app_date":"asc"},{"patent_number":"asc"}]');
 }
 
 $('#patentssearch').on('click', patentsSearch);
 
 function patentsSearch() {
-	patentTarget = '#target2';
-	
+    patentTarget = '#target2';
+    
     patents.search('patents', 'WMS Gaming Inc.', 'motyl', '');
     patents.search('patents', 'Bally Gaming, Inc.', 'motyl', '');
 }
@@ -45,6 +45,12 @@ function patentsDone(event, patData) {
 
     renderPatents(patentTarget, renderData);
 
+    if( ((patentTarget === '#target1') && (document.getElementById('logChk1').checked === true)) || 
+        ((patentTarget === '#target2') && (document.getElementById('logChk2').checked === true)) ) {
+        console.log('---- START ----');
+        console.log(JSON.stringify(renderData, null, 4));
+        console.log('----- END -----');
+    }
 // muted    console.log(JSON.stringify(renderData, null, 4));
 }
 
@@ -56,8 +62,8 @@ function patentsNone(event, patData) {
 
 ///////////
 /*
-	Render patent JSON data into HTML
-	
+    Render patent JSON data into HTML
+    
 */
 function renderPatents(target, patData) {
     var source   = $("#patent-template").html();

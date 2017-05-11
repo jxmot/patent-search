@@ -6,13 +6,13 @@
     <meta name="author" content="Jim Motyl">
     <meta name="description" content="playing around with the USPTO API">
     <meta name="keywords" content="USPTO,api,xml,javascript,jquery,ajax">
-	
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/patent.css">
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>			
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>            
 
     <script src="assets/js/patentsJSON.js" type="text/javascript"></script>
     <script src="assets/js/misc-util.js" type="text/javascript"></script>
@@ -20,29 +20,31 @@
 </head>
 <body style="margin-left:5%;margin-top:20px;">
     <div>
-		<p>Use a canned API call.</p>
+        <p>Use a canned API call.</p>
+        <p>log JSON data : <input type="checkbox" id="logChk1"></p>
         <button id="patentsget" class="btn btn-primary">GO</button>
     </div>
     <br>
     <div id="target1">
     </div>
-	<br><br>
+    <br><br>
     <div>
-		<p>Use a constructed API call.</p>
+        <p>Use a constructed API call.</p>
+        <p>log JSON data : <input type="checkbox" id="logChk2"></p>
         <button id="patentssearch" class="btn btn-primary">GO</button>
     </div>
     <br>
     <div id="target2">
     </div>
-	<br><br>
+    <br><br>
     <div>
-		<p>Read a JSON file with data from a previous API call.</p>
+        <p>Read a JSON file with data from a previous API call.</p>
         <button id="patentsread" class="btn btn-primary">GO</button>
     </div>
     <br>
     <div id="target3">
     </div>
-	<br><br>
+    <br><br>
 
 </body>
 
