@@ -1,39 +1,37 @@
-$('#test1').on('click', runTest1);
+var patentTarget = '';
 
-function runTest1() {
+$('#patentsget').on('click', patentsGet);
+
+function patentsGet() {
+	patentTarget = '#target1';
+	
     patents.get('http://www.patentsview.org/api/patents/query?q={"_and":[{"inventor_last_name":"motyl"},{"_or":[{"assignee_organization":"WMS Gaming Inc."},{"assignee_organization":"Bally Gaming, Inc."}]}]}&f=["app_date","patent_title","patent_number","patent_date","patent_abstract"]&s=[{"app_date":"asc"},{"patent_number":"asc"}]');
 }
 
-$('#test2').on('click', runTest2);
+$('#patentssearch').on('click', patentsSearch);
 
-function runTest2() {
+function patentsSearch() {
+	patentTarget = '#target2';
+	
     patents.search('patents', 'WMS Gaming Inc.', 'motyl', '');
     patents.search('patents', 'Bally Gaming, Inc.', 'motyl', '');
 }
 
-$('#test3').on('click', runTest3);
 
-function runTest3() {
+
+
+
+$('#patentsread').on('click', patentsRead);
+
+function patentsRead() {
     //var patList = removeDuplicates(rawPatents, "patent_title", true);
-    renderPatents(rawPatents);
-}
-
-function renderPatents(patData) {
-    var source   = $("#patent-template").html();
-    var template = Handlebars.compile(source);
-    var context = {patents: patData};
-    var html    = template(context);
-
-    $('#target').append(html);
+    renderPatents('#target3', rawPatents);
 }
 
 $(document).on('patentsDataRead', function(event, arg) {
         console.log('Event(patentsDataRead) - done, rawPatents read = ' + rawPatents.list.length);
     }
 );
-
-
-
 
 $(document).on('patentsDone', patentsDone);
 
@@ -45,7 +43,7 @@ function patentsDone(event, patData) {
         last_search: patData.last_search
     };
 
-    renderPatents(renderData);
+    renderPatents(patentTarget, renderData);
 
 // muted    console.log(JSON.stringify(renderData, null, 4));
 }
@@ -57,6 +55,19 @@ function patentsNone(event, patData) {
 }
 
 ///////////
+/*
+	Render patent JSON data into HTML
+	
+*/
+function renderPatents(target, patData) {
+    var source   = $("#patent-template").html();
+    var template = Handlebars.compile(source);
+    var context  = {patents: patData};
+    var html     = template(context);
+
+    $(target).append(html);
+}
+
 /*
     Remove duplicate objects from an array using a specified
     property name's value in the comparison for a duplicate.
