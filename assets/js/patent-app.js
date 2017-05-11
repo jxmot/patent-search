@@ -1,5 +1,17 @@
+/* ************************************************************************ */
+/*
+    Patent Search Application
+    
+    Created for the purpose of developing code to retreive and render 
+    U.S. patent data for use in a resume.
+*/
+
+// will contain the DOM target for HTML output
 var patentTarget = '';
 
+/*
+    Call patents.get() with a complete API URL
+*/
 $('#patentsget').on('click', patentsGet);
 
 function patentsGet() {
@@ -8,6 +20,9 @@ function patentsGet() {
     patents.get('http://www.patentsview.org/api/patents/query?q={"_and":[{"inventor_last_name":"motyl"},{"_or":[{"assignee_organization":"WMS Gaming Inc."},{"assignee_organization":"Bally Gaming, Inc."}]}]}&f=["app_date","patent_title","patent_number","patent_date","patent_abstract"]&s=[{"app_date":"asc"},{"patent_number":"asc"}]');
 }
 
+/*
+    Call patents.search() more than once to obtain all patents
+*/
 $('#patentssearch').on('click', patentsSearch);
 
 function patentsSearch() {
@@ -17,10 +32,10 @@ function patentsSearch() {
     patents.search('patents', 'Bally Gaming, Inc.', 'motyl', '');
 }
 
-
-
-
-
+/*
+    Render previously retrieved, saved, and read-in patent data from a JSON 
+    file.
+*/
 $('#patentsread').on('click', patentsRead);
 
 function patentsRead() {
@@ -28,11 +43,24 @@ function patentsRead() {
     renderPatents('#target3', rawPatents);
 }
 
+/*
+    The JSON file containing the patent data is read and parsed when the 
+    document is loaded. This happens in patentsJSON.js
+*/
 $(document).on('patentsDataRead', function(event, arg) {
         console.log('Event(patentsDataRead) - done, rawPatents read = ' + rawPatents.list.length);
     }
 );
 
+// in case something didn't work....
+$(document).on('patentsDataFail', function(event, arg) {
+        console.log('Event(patentsDataFail) - FAIL');
+    }
+);
+
+/* ************************************************************************ */
+/*
+*/
 $(document).on('patentsDone', patentsDone);
 
 function patentsDone(event, patData) {
@@ -51,16 +79,25 @@ function patentsDone(event, patData) {
         console.log(JSON.stringify(renderData, null, 4));
         console.log('----- END -----');
     }
-// muted    console.log(JSON.stringify(renderData, null, 4));
 }
 
+/*
+*/
 $(document).on('patentsNone', patentsNone);
 
 function patentsNone(event, patData) {
     console.log(patData);
 }
 
-///////////
+/*
+*/
+$(document).on('patentsFail', patentsFail);
+
+function patentsFail(event, patData) {
+    console.log(patData);
+}
+
+/* ************************************************************************ */
 /*
     Render patent JSON data into HTML
     
