@@ -27,7 +27,7 @@ The API is well documented and they provide 7 end-points.
 
 The files described here are - 
 
-* **`index.html`** 
+* **`index.html`** - main page
 * **`assets/js/patentsJSON.js`** - reads the patent data JSON file when `index.html` is loaded
 * **`assets/js/patent-app.js`** - high level logic and calls to `patents.*` functions
 * **`assets/js/patents.js`** - `.get()` and `.search()`
