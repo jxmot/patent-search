@@ -23,6 +23,8 @@ I have used an API provided by <http://www.patentsview.org>. And I've implemente
 
 The API is well documented and they provide 7 end-points.
 
+**NOTE :** According the the *Patents View* website - "*The current version of the PatentsView API delivers data on patents granted through December 16, 2016.*"
+
 # Architecture
 
 The primary files are - 
