@@ -5,6 +5,7 @@ This repository contains the code I used for collecting *patent* data that I've 
 * [Overview](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-overview)
 * [Patent API](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-patent-api)
 * [Architecture](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-architecture)
+* [Features](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-features)
 * [Future](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-future)
 
 # Overview
@@ -34,6 +35,12 @@ The primary files are -
 * **`assets/js/patent-app.js`** - high level logic and calls to `patents.*` functions
 * **`assets/js/patents.js`** - `.get()` and `.search()`
 * **`data/patents.json`** - contains patent data
+
+# Features
+
+* Used CSS to disable text selection and copying.
+* Sequential searching is possible.
+* The rendered HTML of each patent is under a collapsible heading and body
 
 # Future
 
