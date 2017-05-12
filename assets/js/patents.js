@@ -7,7 +7,7 @@
             http://www.patentsview.org/api/inventor.html
 
         Dependencies - 
-            ns-misc-util.js(miscutil) - A module created for containing
+            misc-util.js(miscutil) - A module created for containing
             miscellaneous utility functions within a namespace (miscutil).
 
 */
@@ -46,37 +46,21 @@ patents = (function() {
         '&s=[{"patent_number":"asc"}]'
     ];
 
-    var _urlParts = [
-// NOTE: the 'app_date' is found in -
-//      data.patents[].applications[0].app_date
-        'http://www.patentsview.org/api/patents',
-        'http://www.patentsview.org/api/inventors',
-
-        '/query?q=',
-        '{"_and":[',
-        '{"_or":[',
-
-        '{"assignee_organization":"%assignee"}',
-        '{"inventor_last_name":"%last_name"}',
-        '{"inventor_first_name":"%first_name"}',
-
-        ']}',
-        ',',
-
-        '&f=["patent_title","patent_number","patent_date","patent_abstract"]',
-// NOTE: the "inventors" end point doesn't return 'app_date'
-        '&f=["assignee_organization","app_date","patent_title","patent_number","patent_date","patent_abstract"]',
-        '&s=[{"patent_number":"asc"}]'
-    ];
-
-
-
     /*
+        I've used the API from www.patentsview.org, mostly because it's much
+        easier than trying to parse the data from the actual USPTO API.
+    
+        For info on the query language - 
+        
+            http://www.patentsview.org/api/query-language.html
 
-        http://www.patentsview.org/api/query-language.html
+            
+        The beginning of a "patents" end-point query - 
+        
+            http://www.patentsview.org/api/patents/query?
 
-        http://www.patentsview.org/api/patents/query?
-
+        Various experimental bits used in the query....
+        
             q={"_and":[{"inventor_last_name":"motyl"}]}
             q={"_and":[{"inventor_last_name":"motyl"},{"_or":[{"assignee_organization":"WMS Gaming Inc."},{"assignee_organization":"Bally Gaming, Inc."}]}]}
 
@@ -88,8 +72,7 @@ patents = (function() {
             &s=[{"patent_number":"asc"}]
 
 
-
-            Successful - 
+        This was successful - 
 
             http://www.patentsview.org/api/patents/query?
             q={"_and":[{"inventor_last_name":"motyl"},{"_or":[{"assignee_organization":"WMS Gaming Inc."},{"assignee_organization":"Bally Gaming, Inc."}]}]}
@@ -138,12 +121,12 @@ patents = (function() {
 
     /* ******************************************************************** */
     /*
-        Public Method - searchInv(a, ln, fn)
+        Public Method - search(ep, a, ln, fn)
 
-        Use the inventors end point - http://www.patentsview.org/api/inventor.html
+        Search an end-point for patent data...
 
         Where -
-            ep = the desired enpoint, a string. only compared against.
+            ep = the desired enpoint, used in choosing a part of the URL
             a  = The assignee
             ln = Inventor last name
             fn = Inventor first name

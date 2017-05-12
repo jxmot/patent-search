@@ -18,19 +18,61 @@ function patentsGet() {
     patentTarget = '#target1';
     
     patents.get('http://www.patentsview.org/api/patents/query?q={"_and":[{"inventor_last_name":"motyl"},{"_or":[{"assignee_organization":"WMS Gaming Inc."},{"assignee_organization":"Bally Gaming, Inc."}]}]}&f=["app_date","patent_title","patent_number","patent_date","patent_abstract"]&s=[{"app_date":"asc"},{"patent_number":"asc"}]');
-}
+};
 
 /*
     Call patents.search() more than once to obtain all patents
 */
 $('#patentssearch').on('click', patentsSearch);
 
+var searchList = [];
+
 function patentsSearch() {
-    patentTarget = '#target2';
     
-    patents.search('patents', 'WMS Gaming Inc.', 'motyl', '');
-    patents.search('patents', 'Bally Gaming, Inc.', 'motyl', '');
-}
+    patentTarget = '#target2';
+
+    searchList = [];
+    
+    // Create a search item (contains args for the patent search) and
+    // save it globally in an array.
+    var searchitem = Object.assign({},
+    {
+        ep: 'patents', 
+        a: 'WMS Gaming Inc.', 
+        ln: 'motyl', 
+        fn: ''
+    });
+    
+    searchList.push(searchitem);
+
+    // Create and save....
+    searchitem = Object.assign({},
+    {
+        ep: 'patents', 
+        a: 'Bally Gaming, Inc.', 
+        ln: 'motyl', 
+        fn: ''
+    });
+
+    searchList.push(searchitem);
+
+    // will be triggered when a HTML render has completed
+    $(document).on('renderDone', searchNext);
+    
+    // get it started...
+    searchNext();
+};
+
+/*
+    Perform the next seqential patent search, if none exist
+    then stop listening for the trigger.
+*/
+function searchNext() {
+    if(searchList.length > 0) {
+        var search = searchList.shift();
+        patents.search(search.ep, search.a, search.ln, search.fn);
+    } else $(document).off('renderDone');
+};
 
 /*
     Render previously retrieved, saved, and read-in patent data from a JSON 
@@ -41,7 +83,7 @@ $('#patentsread').on('click', patentsRead);
 function patentsRead() {
     //var patList = removeDuplicates(rawPatents, "patent_title", true);
     renderPatents('#target3', rawPatents);
-}
+};
 
 /*
     The JSON file containing the patent data is read and parsed when the 
@@ -60,17 +102,21 @@ $(document).on('patentsDataFail', function(event, arg) {
 
 /* ************************************************************************ */
 /*
+    The previous .get() or .search() has completed.
 */
 $(document).on('patentsDone', patentsDone);
 
+// 'patData' contains the found patents
 function patentsDone(event, patData) {
 
+    // set up the render data...
     var renderData = {
         list: removeDuplicates(patData.list, "patent_title", true),
         search_url: patData.search_url,
         last_search: patData.last_search
     };
 
+    // render to HTML at the specified DOM tag (target)
     renderPatents(patentTarget, renderData);
 
     if( ((patentTarget === '#target1') && (document.getElementById('logChk1').checked === true)) || 
@@ -79,23 +125,32 @@ function patentsDone(event, patData) {
         console.log(JSON.stringify(renderData, null, 4));
         console.log('----- END -----');
     }
-}
+    
+    // used when sequential search & render operations are necessary
+    $(document).trigger('renderDone');
+};
 
 /*
+    It's likely that no patents were found
 */
 $(document).on('patentsNone', patentsNone);
 
-function patentsNone(event, patData) {
-    console.log(patData);
-}
+// 'searchURL' will contain the URL used for the failed search
+function patentsNone(event, searchURL) {
+    console.log('patentsNone() - search URL follows....');
+    console.log(searchURL);
+};
 
 /*
+    A failure occured during the AJAX call
 */
 $(document).on('patentsFail', patentsFail);
 
-function patentsFail(event, patData) {
-    console.log(patData);
-}
+// 'queryData' should contain the AJAX query
+function patentsFail(event, queryData) {
+    console.log('patentsFail() - query data follows....');
+    console.log(queryData);
+};
 
 /* ************************************************************************ */
 /*
@@ -109,7 +164,7 @@ function renderPatents(target, patData) {
     var html     = template(context);
 
     $(target).append(html);
-}
+};
 
 /*
     Remove duplicate objects from an array using a specified
@@ -143,4 +198,4 @@ function removeDuplicates(arr, prop, keepFirst) {
     }
  
     return new_arr;
- }
+};
