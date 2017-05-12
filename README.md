@@ -15,7 +15,7 @@ This is a client-side application implemented with :
 * Handlebars
 * Bootstrap
 
-The primary purpose for this application was to develop the necessary code for retrieving U.S. patent data. The retrieved data is rendered in HTML using Handlebars.
+The primary purpose for this application was to develop the necessary code for retrieving U.S. patent data. The retrieved data is rendered in HTML using Handlebars. Optionally, the patent data can be sent to the browser's console as JSON formatted data.
 
 # Patent API
 
