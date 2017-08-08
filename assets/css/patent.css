@@ -45,3 +45,14 @@
     font-weight:bold;
 }
 
+.printmsg {
+    display: none;
+}
+@media print {
+    .page-content {
+        display: none;
+    }
+    .printmsg {
+        display: initial;
+    }
+}
