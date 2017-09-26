@@ -2,11 +2,11 @@
 
 This repository contains the code I used for collecting *patent* data that I've used in my resume. At a previous job I had the opportunity to be creative and submit ideas for consideration in becoming patents. 
 
-* [Overview](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-overview)
-* [Patent API](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-patent-api)
-* [Architecture](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-architecture)
-* [Features](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-features)
-* [Future](https://bitbucket.org/jxmot/patent-search/overview#markdown-header-future)
+* [Overview](#overview)
+* [Patent API](#patent-api)
+* [Architecture](#architecture)
+* [Features](#features)
+* [Future](#future)
 
 # Overview
 
