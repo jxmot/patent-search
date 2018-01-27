@@ -93,7 +93,7 @@
         }
     ],
     "search_url": "http://www.patentsview.org/api/patents/query?q={\"_and\":[{\"inventor_last_name\":\"motyl\"},{\"_or\":[{\"assignee_organization\":\"WMS Gaming Inc.\"},{\"assignee_organization\":\"Bally Gaming, Inc.\"}]}]}&f=[\"app_date\",\"patent_title\",\"patent_number\",\"patent_date\",\"patent_abstract\"]&s=[{\"app_date\":\"asc\"},{\"patent_number\":\"asc\"}]",
-    "last_search": "4/8/2017",
+    "last_search": "1/27/2018",
     "originator": ["8480488","8574072","8246456","8409009"]
 }
 
