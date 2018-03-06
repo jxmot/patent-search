@@ -74,12 +74,12 @@
             <div id="patent-list">
             {{#each patents.list as |patent|}}
                 <div id="patent-{{patent.patent_number}}" class="patent-item">
-                    <h5 id="patent-heading-{{patent.patent_number}}" class="patent-heading collapsed" data-toggle="collapse" data-target="#patent-content-{{patent.patent_number}}">
+                    <h5 id="patent-heading-{{patent.patent_number}}" class="patent-heading collapsed" data-toggle="collapse" data-target="#patent-content-{{patent.patent_number}}-{{@root.uid}}">
                         <span id="patent-icon-{{patent.patent_number}}" class="fa patent-heading-collapse-icon"> </span>
                         <span id="patent-title-{{patent.patent_number}}">{{patent.patent_title}}</span>
                     </h5>
                     <!-- a monospace font is used from this point on... -->
-                    <div id="patent-content-{{patent.patent_number}}" class="patent-item-content collapse">
+                    <div id="patent-content-{{patent.patent_number}}-{{@root.uid}}" class="patent-item-content collapse">
                         <h5 id="patent-dates-{{patent.patent_number}}" class="patent-item-title">
                             <span id="patent-appdate-{{patent.patent_number}}">Applied &nbsp;: {{patent.app_date}}</span>
                             <br>

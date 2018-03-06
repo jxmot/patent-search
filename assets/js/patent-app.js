@@ -160,7 +160,7 @@ function patentsFail(event, queryData) {
 function renderPatents(target, patData) {
     var source   = $("#patent-template").html();
     var template = Handlebars.compile(source);
-    var context  = {patents: patData};
+    var context  = {patents: patData, uid: target.slice(1,target.length)};
     var html     = template(context);
 
     $(target).append(html);
