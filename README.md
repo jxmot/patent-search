@@ -52,4 +52,5 @@ I plan on implementing the patent search as an API served with NodeJS and Expres
     * The refresh time interval has passed and a call to retrieve data has occurred.
     * A background task is running, and when the refresh time interval has passed the patent data will be automatically updated.
 
-
+---
+<img src="http://webexperiment.info/extcounter/mdcount.php?id=patent-search">
